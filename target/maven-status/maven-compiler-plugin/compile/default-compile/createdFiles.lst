@@ -1,0 +1,6 @@
+com\filipe\User.class
+com\filipe\UserController.class
+com\filipe\GenericRepository.class
+com\filipe\Main.class
+com\filipe\SimpleIoCContainer.class
+com\filipe\UserService.class
