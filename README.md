@@ -30,7 +30,7 @@ crud/
 mvn jetty:run
 ```
 
-3. Acesse a aplicação em [http://localhost:8080/user](http://localhost:8080/user) ou utilize o formulário em `formulario.html`.
+3. Acesse a aplicação em [http://localhost:8080](http://localhost:8080) ou utilize o formulário em `formulario.html`.
 
 ## Funcionalidades
 - Cadastro de usuários
