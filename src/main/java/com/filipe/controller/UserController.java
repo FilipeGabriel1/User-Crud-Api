@@ -7,8 +7,8 @@ import java.util.List;
 
 import com.filipe.ioc.SimpleIoCContainer;
 import com.filipe.model.User;
+import com.filipe.model.UserService;
 import com.filipe.repository.GenericRepository;
-import com.filipe.service.UserService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,10 +16,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
+//@WebServlet("/user"): Define que esse servlet responde à URL /user.
 @WebServlet("/user")
+
+// Classe que herda de HttpServlet para lidar com requisições HTTP.
 public class UserController extends HttpServlet {
     private UserService userService;
 
+
+    //init: Inicializa o repositório e o serviço de usuário, registrando-os no container e recuperando a instância do serviço.
     @Override
     public void init() throws ServletException {
         GenericRepository<User, Long> repo = new GenericRepository<>();
@@ -29,6 +35,12 @@ public class UserController extends HttpServlet {
     userService = (UserService) container.getBean((Class)UserService.class);
     }
 
+
+    // doGet(): Trata requisições GET Se action=list, busca todos os usuários e exibe em HTML
+    // Se action=get, busca um usuário pelo id e exibe.
+    // Usa reflexão para invocar métodos do serviço.
+    // Exibe link para voltar ao formulário.
+    // Em caso de erro, mostra mensagem de erro.
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -55,6 +67,12 @@ public class UserController extends HttpServlet {
         }
     }
 
+    // doPost(): Trata requisições POST.
+    //Se action=create, cria um novo usuário.
+    //Se action=update, atualiza um usuário existente.
+    //Se action=delete, remove um usuário.
+    //Também usa reflexão para invocar métodos do serviço.
+    //Exibe mensagem de sucesso ou erro e link para voltar ao formulário.
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");

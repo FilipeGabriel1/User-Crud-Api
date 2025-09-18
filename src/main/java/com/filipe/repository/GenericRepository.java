@@ -1,7 +1,13 @@
 package com.filipe.repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+
+// Repositório genérico para operações CRUD em memória, usando um Map para armazenar entidades.
+// T é o tipo da entidade e ID é o tipo do identificador.
 public class GenericRepository<T, ID> {
     private final Map<ID, T> store = new HashMap<>();
 

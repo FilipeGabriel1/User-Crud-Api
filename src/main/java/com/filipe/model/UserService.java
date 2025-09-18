@@ -1,9 +1,9 @@
-package com.filipe.service;
 
-import com.filipe.model.User;
+package com.filipe.model;
 import com.filipe.repository.GenericRepository;
-import java.util.List;
 
+
+// Serviço para gerenciar usuários, usando GenericRepository para operações CRUD.
 public class UserService {
     private final GenericRepository<User, Long> repository;
 
@@ -11,27 +11,27 @@ public class UserService {
         this.repository = repository;
     }
 
+   
     public void createUser(Long id, String name, String email) {
         repository.save(new User(id, name, email));
     }
 
+  
     public User getUser(Long id) {
         return repository.findById(id);
     }
 
-    public List<User> getAllUsers() {
+
+    public java.util.List<User> getAllUsers() {
         return repository.findAll();
     }
 
+  
     public void updateUser(Long id, String name, String email) {
-        User user = repository.findById(id);
-        if (user != null) {
-            user.setName(name);
-            user.setEmail(email);
-            repository.save(user);
-        }
+        repository.save(new User(id, name, email));
     }
 
+   
     public void deleteUser(Long id) {
         repository.delete(id);
     }
